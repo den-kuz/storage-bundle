@@ -3,23 +3,20 @@ DOCKER_COMPOSE?=docker compose
 help:
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n"} /^[$$()% a-zA-Z_-]+:.*?##/ { printf "  \033[32m%-30s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
-build: ## Собрать контейнеры
+build: ## Build container
 	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 $(DOCKER_COMPOSE) build
 
-pull: ## Обновить образа
-	$(DOCKER_COMPOSE) pull
-
-up: ## Поднять контейнеры
+up: ## Up containers
 	$(DOCKER_COMPOSE) up -d --remove-orphans
 
-stop: ## Остановить контейнеры
+stop: ## Stop containers
 	$(DOCKER_COMPOSE) stop
 
-down: ## Убить контейнеры
+down: ## Kill containers
 	$(DOCKER_COMPOSE) down
 
-in-app: ## Войти в app контейнер
+in-app: ## Exec bash in container
 	$(DOCKER_COMPOSE) exec app bash
 
-phpcsfix: ## Внести автоматические правки по стилю кода
+phpcsfix: ## Apply code style fixes
 	$(DOCKER_COMPOSE) exec app composer phpcsfix
