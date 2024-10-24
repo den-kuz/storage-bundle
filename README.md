@@ -1,3 +1,5 @@
+Symfony Bundle providing storage folders as services
+
 Add config to `config/packages/d3n_storage.yaml`:
 
 ```yaml
