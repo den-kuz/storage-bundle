@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension as BaseExtension;
 use function sprintf;
 
-final class Extension extends BaseExtension
+final class StorageExtension extends BaseExtension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {

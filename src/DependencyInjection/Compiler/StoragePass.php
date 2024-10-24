@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace D3N\StorageBundle\DependencyInjection;
+namespace D3N\StorageBundle\DependencyInjection\Compiler;
 
 use RuntimeException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
