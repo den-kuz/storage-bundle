@@ -13,14 +13,20 @@ use function sprintf;
 
 final class StorageExtension extends BaseExtension
 {
-    public function load(array $configs, ContainerBuilder $container): void
+    public function getAlias(): string
     {
-        $this->loadInternal($this->processConfiguration($this->getConfiguration($configs, $container), $configs), $container);
+        return 'd3n_storage';
     }
 
-    protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
+    public function load(array $configs, ContainerBuilder $container): void
     {
-        $this->registerStorages($container, $mergedConfig['storage']);
+        $configuration = $this->getConfiguration($configs, $container);
+
+        if (null === $configuration) {
+            return;
+        }
+
+        $this->registerStorages($container, $this->processConfiguration($configuration, $configs));
     }
 
     private function registerStorages(ContainerBuilder $container, array $config): void
@@ -34,10 +40,11 @@ final class StorageExtension extends BaseExtension
             $container->registerAliasForArgument($id, StorageInterface::class, sprintf('%sStorage', $name));
 
             $container
-                ->setDefinition($id, new Definition(Storage::class, ['$storageDir' => $path, '$name' => $name]))
+                ->setDefinition($id, new Definition(Storage::class, ['$dir' => $path, '$name' => $name]))
                 ->setPublic(false)
                 ->setAutowired(true)
-                ->addTag('d3n.storage');
+                ->addTag('d3n.storage')
+            ;
         }
 
         $defaultStorage = $config['default'] ?? null;

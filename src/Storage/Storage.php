@@ -17,11 +17,8 @@ use const DIRECTORY_SEPARATOR;
 
 final readonly class Storage implements StorageInterface
 {
-    public function __construct(
-        private string $storageDir,
-        private Filesystem $fs,
-        private string $name,
-    ) {
+    public function __construct(private Filesystem $fs, private string $dir, private string $name)
+    {
     }
 
     public function getName(): string
@@ -127,8 +124,8 @@ final readonly class Storage implements StorageInterface
     {
         $dir = implode(DIRECTORY_SEPARATOR, $path);
 
-        if (!str_starts_with($dir, $this->storageDir)) {
-            $dir = $this->storageDir . DIRECTORY_SEPARATOR . $dir;
+        if (!str_starts_with($dir, $this->dir)) {
+            $dir = $this->dir . DIRECTORY_SEPARATOR . $dir;
         }
 
         if (!is_dir($dir)) {
@@ -163,7 +160,7 @@ final readonly class Storage implements StorageInterface
     {
         $path = rtrim($path, DIRECTORY_SEPARATOR);
 
-        if ($this->storageDir === $path || !file_exists($path)) {
+        if ($this->dir === $path || !file_exists($path)) {
             return;
         }
 

@@ -14,15 +14,15 @@ final class StoragePass implements CompilerPassInterface
     public function process(ContainerBuilder $container): void
     {
         foreach ($container->findTaggedServiceIds('d3n.storage') as $serviceId => $tags) {
-            $storageDef = $container->getDefinition($serviceId);
-            $dir = $container->resolveEnvPlaceholders($storageDef->getArgument('$storageDir'), true);
+            $definition = $container->getDefinition($serviceId);
+            $directory = $container->resolveEnvPlaceholders($definition->getArgument('$dir'), true);
 
-            if (!is_dir($dir)) {
-                if (false === @mkdir($dir, 0o777, true) && !is_dir($dir)) {
-                    throw new RuntimeException(sprintf('Failed to create "%s":', $dir));
+            if (!is_dir($directory)) {
+                if (false === @mkdir($directory, 0o777, true) && !is_dir($directory)) {
+                    throw new RuntimeException(sprintf('Failed to create "%s":', $directory));
                 }
-            } elseif (!is_writable($dir)) {
-                throw new RuntimeException(sprintf('Unable to write in the directory (%s).', $dir));
+            } elseif (!is_writable($directory)) {
+                throw new RuntimeException(sprintf('Unable to write in the directory (%s).', $directory));
             }
         }
     }
