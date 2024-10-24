@@ -18,7 +18,8 @@ use D3N\StorageBundle\Storage\StorageInterface;
 
 // ...
 
-public function __construct(private StorageInterface $someStorage) // argument name = camelCased name of storage name
+// argument name = camelCased name of storage name
+public function __construct(private StorageInterface $someStorage)
 {
 }
 ```
