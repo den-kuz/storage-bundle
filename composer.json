@@ -14,10 +14,20 @@
     "symfony/dependency-injection": "^7",
     "symfony/filesystem": "^7",
     "symfony/finder": "^7",
-    "symfony/http-kernel": "^7",
-    "symfony/lock": "^7"
+    "symfony/http-kernel": "^7"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.64"
   },
   "config": {
     "sort-packages": true
+  },
+  "scripts": {
+    "phpcscheck": [
+      "php-cs-fixer fix --dry-run"
+    ],
+    "phpcsfix": [
+      "php-cs-fixer fix"
+    ]
   }
 }

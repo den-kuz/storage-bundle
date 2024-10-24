@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 use D3N\StorageBundle\DependencyInjection\CompilerPass\StoragePass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;

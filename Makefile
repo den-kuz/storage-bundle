@@ -20,3 +20,6 @@ down: ## Убить контейнеры
 
 in-app: ## Войти в app контейнер
 	$(DOCKER_COMPOSE) exec app bash
+
+phpcsfix: ## Внести автоматические правки по стилю кода
+	$(DOCKER_COMPOSE) exec app composer phpcsfix

@@ -20,7 +20,7 @@ final readonly class Storage implements StorageInterface
     public function __construct(
         private string $storageDir,
         private Filesystem $fs,
-        private string $name
+        private string $name,
     ) {
     }
 

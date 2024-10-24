@@ -8,10 +8,16 @@ use D3N\StorageBundle\Storage\Storage;
 use D3N\StorageBundle\Storage\StorageInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
+use Symfony\Component\DependencyInjection\Extension\Extension as BaseExtension;
+use function sprintf;
 
-final class Extension extends ConfigurableExtension
+final class Extension extends BaseExtension
 {
+    public function load(array $configs, ContainerBuilder $container): void
+    {
+        $this->loadInternal($this->processConfiguration($this->getConfiguration($configs, $container), $configs), $container);
+    }
+
     protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $this->registerStorages($container, $mergedConfig['storage']);

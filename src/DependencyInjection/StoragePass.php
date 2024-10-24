@@ -7,6 +7,7 @@ namespace D3N\StorageBundle\DependencyInjection\CompilerPass;
 use RuntimeException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use function sprintf;
 
 final class StoragePass implements CompilerPassInterface
 {
