@@ -1,0 +1,11 @@
+services:
+  app:
+    container_name: storage-bundle
+    restart: 'no'
+    volumes:
+      - ./:/var/www/
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
