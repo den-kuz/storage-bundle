@@ -1,11 +1,11 @@
 {
-  "name": "d3n/symfony-component-bundle",
+  "name": "d3n/storage-bundle",
   "type": "library",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "autoload": {
     "psr-4": {
-      "D3N\\ComponentBundle\\": "src/"
+      "D3N\\StorageBundle\\": "src/"
     }
   },
   "require": {
