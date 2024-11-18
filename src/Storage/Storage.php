@@ -81,7 +81,7 @@ final readonly class Storage implements StorageInterface
         yield from $dirs;
     }
 
-    public function listFiles(array $path = [], string $name = '*', bool $gnoreDots = true, bool $ignoreVcs = true, array $filters = [], ?int $limit = null, ?int $offset = null): Generator
+    public function listFiles(array $path = [], string $name = '*', bool $ignoreDots = true, bool $ignoreVcs = true, array $filters = [], ?int $limit = null, ?int $offset = null): Generator
     {
         $finder = $this
             ->getBaseFinder($path, $name)
