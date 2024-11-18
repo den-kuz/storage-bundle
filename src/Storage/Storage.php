@@ -186,6 +186,6 @@ final readonly class Storage implements StorageInterface
     {
         return (new Finder())
             ->in($this->getDirectory($path))
-            ->name($name);
+            ->name('*' === $name ? [] : $name);
     }
 }
