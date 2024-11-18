@@ -21,7 +21,7 @@ interface StorageInterface
     /**
      * @param Closure[] $filters
      */
-    public function listFiles(array $path = [], string $name = '*', bool $gnoreDots = true, bool $ignoreVcs = true, array $filters = [], ?int $limit = null, ?int $offset = null): Generator
+    public function listFiles(array $path = [], string $name = '*', bool $gnoreDots = true, bool $ignoreVcs = true, array $filters = [], ?int $limit = null, ?int $offset = null): Generator;
 
     public function listDirectories(array $path = [], string $name = '*', ?int $depth = null): Generator;
 
